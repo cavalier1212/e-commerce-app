@@ -1,0 +1,31 @@
+server:
+  port: 8070
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/order
+    username: alix
+    password: alix
+  jpa:
+    hibernate:
+      ddl-auto: update # create, update, create-drop, validate
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: orderConfirmation:com.alix.ecommerce.kafka.OrderConfirmation
+
+application:
+  config:
+    # port 指向API GateWay port (本地、單專案則指向該服務port)
+    # 指向 API GW 因為如果單項服務有多個實體，API GW 才知道指向哪台、實施負載平衡
+#    customer-url: http://localhost:8090/api/v1/customers
+#    payment-url: http://localhost:8060/api/v1/payments
+#    product-url: http://localhost:8050/api/v1/products
+    customer-url: http://localhost:8222/api/v1/customers
+    payment-url: http://localhost:8222/api/v1/payments
+    product-url: http://localhost:8222/api/v1/products

@@ -1,0 +1,18 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+name:
+  value: alix
+spring:
+  cloud:
+    config:
+      override-system-properties: false
+# 這個配置表示 Spring Cloud Config 不會覆寫個別專案系統屬性
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
